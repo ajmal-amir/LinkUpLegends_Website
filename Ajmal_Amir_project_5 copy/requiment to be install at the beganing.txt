@@ -1,0 +1,5 @@
+first we install the express by: npm i express
+we install the ejs by: npm i ejs
+for keep tracking our HTTP request we would like to install morgan by: npm i morgan
+
+

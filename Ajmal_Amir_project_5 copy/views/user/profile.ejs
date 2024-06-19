@@ -1,0 +1,78 @@
+<%- include('../partials/header.ejs') %>
+<div class="Erro-content">
+    <% if (errorMessages.length > 0) { %>
+        <% errorMessages.forEach(message => { %>
+            <div class="error"><%= message %></div>
+        <% }) %>
+    <% } %>
+
+    <% if (successMessages.length > 0) { %>
+        <% successMessages.forEach(message => { %>
+            <div class="success"><%= message %></div>
+        <% }) %>
+    <% } %>
+</div>
+<div class="user-profile-name">
+    <% if (user) { %>
+        <h2>Welcome, <%= user.firstName + " " + user.lastName %></h2>
+    <% } else { %>
+        <p>User not found</p>
+    <% } %>
+</div>
+<div class="profile-page-container ">
+<div class="events-left">
+    <h2 class="event-h2">Your Events</h2>
+    <% if (events.length > 0) { %>
+        <div class="all-events">
+            <% events.forEach(event => { %>
+                <div class="profile-event">
+                    <form>
+                        <div class="event-detials-icons">
+                            <button type="submit" formmethod="GET" formaction="/events/<%= event.id %>/edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button type="submit" formmethod="POST" formaction="/events/<%= event.id %>/?_method=DELETE"><i class="fa-solid fa-eraser"></i></button>
+                        </div>
+                    </form>
+                    <h3><a href="/events/<%= event.id %>">Title: <%= event.title %></a></h3>
+                                <!-- Define base URL -->
+                    <% const baseUrl = '/'; %>
+                    <!-- Use absolute path for image src -->
+                    <div class="profile-event-details">
+                        <a href="/events/<%= event.id %>"><img src="<%= baseUrl + event.image %>" alt="an event image"></a>
+                        <p><strong>Host:</strong> <%= event.host.firstName + " " +  event.host.lastName%></p>
+                        <p><strong>Details:</strong> <%= event.details %></p>
+                        <p><strong>Where:</strong> <%= event.where %></p>
+                        <p><strong>Date:</strong> <%= event.date %></p>
+                        <p><strong>Time:</strong> <%= event.start.toLocaleString() %> - <%= event.end.toLocaleString() %></p>
+                        <p><strong>Cost:</strong> <%= event.cost %></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div> <!-- End of all-events -->
+    <% } else { %>
+        <p>You haven't created any events yet.</p>
+    <% } %>
+</div> <!-- End of events-left -->
+
+    <div class="events-right">
+        <h2 class="event-h2">Your RSVPs</h2>
+        <% if (rsvps.length > 0) { %>
+            <table class="rsvp-table">
+                <tr>
+                    <th>Event Title</th>
+                    <th>Going?</th>
+                </tr>
+                <% rsvps.forEach(rsvp => { %>
+                    <tr>
+                        <td><a href="/events/<%= rsvp.event.id %>"><%= rsvp.event.title %></a></td>
+                        <td><%= rsvp.status %></td>
+                    </tr>
+                <% }); %>
+            </table>
+        <% } else { %>
+            <p>You haven't RSVP'd to any events yet.</p>
+        <% } %>
+    </div> <!-- End of events-right -->    
+</div> <!-- End of events-page-container -->
+
+<script src="/javascript/scripts.js"></script>
+<%- include('../partials/footer.ejs') %>

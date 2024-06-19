@@ -1,0 +1,133 @@
+<%- include('../partials/header.ejs') %>
+<div class="events-page-container">
+    <h2 class="event-h2">Current</h2>
+    <img class="event-title" src="imgs/Events_title.jpeg" alt="">
+    <div class="all-events">
+        <!-- Social Events -->
+        <div class="social-event" <% if (!events.some(event => event.category === 'Social')) { %> style="display: none;" <% } %>>
+            <h2 class="event-section-h2">Social Events</h2>
+            <% events.forEach(event => { %>
+                <% if (event.category === 'Social') { %>
+                    <div class="event">
+                        <h3><a href="/events/<%= event.id %>">Title: <%= event.title %></a></h3>
+                        <a href="/events/<%= event.id %>"><img src="<%= event.image %>" alt="an event image"></a>
+                        <h3>Host: <%= event.host ? (event.host.firstName + " " + event.host.lastName) : 'Unknown' %></h3>
+                        <p class="event-deatls"><%= event.details %></p>
+                        <div class="event-address">
+                            <p><i class="fa-solid fa-location-crosshairs icons"></i>
+                                <a href="/events/<%= event.id %>"><%= event.where %></a>
+                            </p>
+                        </div>
+                        <div class="events-symbol">
+                            <p><i class="fa-regular fa-calendar-days icons"></i><%= event.date %></p>
+                            <p><i class="fa-regular fa-clock icons"></i> <%= event.start.toLocaleString() %> - <%= event.end.toLocaleString() %></p> 
+                            <p><i class="fa-solid fa-file-invoice-dollar icons"></i><%= event.cost %></p>
+                        </div>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div>
+
+        <!-- Sport Events -->
+        <div class="sport-events" <% if (!events.some(event => event.category === 'Sports')) { %> style="display: none;" <% } %>>
+            <h2 class="event-section-h2">Sport Events</h2>
+            <% events.forEach(event => { %>
+                <% if (event.category === 'Sports') { %>
+                    <div class="event">
+                        <h3><a href="/events/<%= event.id %>">Title: <%= event.title %></a></h3>
+                        <a href="/events/<%= event.id %>"><img src="<%= event.image %>" alt="an event image"></a>
+                        <h3>Host: <%= event.host ? (event.host.firstName + " " + event.host.lastName) : 'Unknown' %></h3>
+                        <p class="event-deatls"><%= event.details %></p>
+                        <div class="event-address">
+                            <p><i class="fa-solid fa-location-crosshairs icons"></i>
+                                <a href="/events/<%= event.id %>"><%= event.where %></a>
+                            </p>
+                        </div>
+                        <div class="events-symbol">
+                            <p><i class="fa-regular fa-calendar-days icons"></i><%= event.date %></p>
+                            <p><i class="fa-regular fa-clock icons"></i> <%= event.start.toLocaleString() %> - <%= event.end.toLocaleString() %></p> 
+                            <p><i class="fa-solid fa-file-invoice-dollar icons"></i><%= event.cost %></p>
+                        </div>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div>
+        <!-- Education Events -->
+        <div class="eduction-events" <% if (!events.some(event => event.category === 'Education')) { %> style="display: none;" <% } %>>
+            <h2 class="event-section-h2">Education Events</h2>
+            <% events.forEach(event => { %>
+                <% if (event.category === 'Education') { %>
+                    <div class="event">
+                        <h3><a href="/events/<%= event.id %>">Title: <%= event.title %></a></h3>
+                        <a href="/events/<%= event.id %>"><img src="<%= event.image %>" alt="an event image"></a>
+                        <h3>Host: <%= event.host ? (event.host.firstName + " " + event.host.lastName) : 'Unknown' %></h3>
+                        <p class="event-deatls"><%= event.details %></p>
+                        <div class="event-address">
+                            <p><i class="fa-solid fa-location-crosshairs icons"></i>
+                                <a href="/events/<%= event.id %>"><%= event.where %></a>
+                            </p>
+                        </div>
+                        <div class="events-symbol">
+                            <p><i class="fa-regular fa-calendar-days icons"></i><%= event.date %></p>
+                            <p><i class="fa-regular fa-clock icons"></i> <%= event.start.toLocaleString() %> - <%= event.end.toLocaleString() %></p> 
+                            <p><i class="fa-solid fa-file-invoice-dollar icons"></i><%= event.cost %></p>
+                        </div>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div> <!--End of the Education Events-->
+        <div class="religious-events" <% if (!events.some(event => event.category === 'Religious')) { %> style="display: none;" <% } %>>
+            <h2 class="event-section-h2">Religious Events</h2>
+            <% events.forEach(event => { %>
+                <% if (event.category === 'Religious') { %>
+                    <div class="event">
+                        <h3><a href="/events/<%= event.id %>">Title: <%= event.title %></a></h3>
+                        <a href="/events/<%= event.id %>"><img src="<%= event.image %>" alt="an event image"></a>
+                        <h3>Host: <%= event.host ? (event.host.firstName + " " + event.host.lastName) : 'Unknown' %></h3>
+                        <p class="event-deatls"><%= event.details %></p>
+                        <div class="event-address">
+                            <p><i class="fa-solid fa-location-crosshairs icons"></i>
+                                <a href="/events/<%= event.id %>"><%= event.where %></a>
+                            </p>
+                        </div>
+                        <div class="events-symbol">
+                            <p><i class="fa-regular fa-calendar-days icons"></i><%= event.date %></p>
+                            <p><i class="fa-regular fa-clock icons"></i> <%= event.start.toLocaleString() %> - <%= event.end.toLocaleString() %></p> 
+                            <p><i class="fa-solid fa-file-invoice-dollar icons"></i><%= event.cost %></p>
+                        </div>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div> <!--End of the Religious Events-->
+        
+        <div class="entertainment-events" <% if (!events.some(event => event.category === 'Entertainment')) { %> style="display: none;" <% } %>>
+        <div class="entertainment-events">
+            <h2 class="event-section-h2">Entertainment Events</h2>
+            <% events.forEach(event => { %>
+                <% if (event.category === 'Entertainment') { %>
+                    <div class="event">
+                        <h3><a href="/events/<%= event.id %>">Title: <%= event.title %></a></h3>
+                        <a href="/events/<%= event.id %>"><img src="<%= event.image %>" alt="an event image"></a>
+                        <h3>Host: <%= event.host ? (event.host.firstName + " " + event.host.lastName) : 'Unknown' %></h3>
+                        <p class="event-deatls"><%= event.details %></p>
+                        <div class="event-address">
+                            <p><i class="fa-solid fa-location-crosshairs icons"></i>
+                                <a href="/events/<%= event.id %>"><%= event.where %></a>
+                            </p>
+                        </div>
+                        <div class="events-symbol">
+                            <p><i class="fa-regular fa-calendar-days icons"></i><%= event.date %></p>
+                            <p><i class="fa-regular fa-clock icons"></i> <%= event.start.toLocaleString() %> - <%= event.end.toLocaleString() %></p> 
+                            <p><i class="fa-solid fa-file-invoice-dollar icons"></i><%= event.cost %></p>
+                        </div>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div> <!--End of the entertainment Events-->
+    </div></div>
+    </div> <!-- End of all-events -->
+</div> <!-- End of events-page-container -->
+
+<script src="/javascript/scripts.js"></script>
+<%- include('../partials/footer.ejs') %>
+

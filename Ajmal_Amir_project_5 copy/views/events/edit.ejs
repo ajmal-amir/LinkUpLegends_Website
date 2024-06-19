@@ -1,0 +1,79 @@
+<%- include('../partials/header.ejs') %>
+<div class="page-wrapper">
+    <main>   <!--enctype="multipart/form-data"-->
+        <h2>Editing your Connection</h2>
+        <form action="/events/<%= event._id %>?_method=PUT" method="POST">
+
+        <div class="form-container">
+            <div class="form-group">
+                <label for="Category">Category</label>
+                <select name="category" id="Category" required>
+                    <option value="Social" <%= event.category === 'Social' ? 'selected' : '' %>>Social</option>
+                    <option value="Sports" <%= event.category === 'Sports' ? 'selected' : '' %>>Sports</option>
+                    <option value="Education" <%= event.category === 'Education' ? 'selected' : '' %>>Education</option>
+                    <option value="Religious" <%= event.category === 'Religious' ? 'selected' : '' %>>Religious</option>
+                    <option value="Entertainment" <%= event.category === 'Entertainment' ? 'selected' : '' %>>Entertainment</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input type="text" name="title" id="Title" required placeholder="Enter the title of your connection" value="<%= event.title || '' %>">
+            </div>
+            <div class="form-group">
+                <label for="host">Host</label>
+                <input type="text" name="host" id="host" required placeholder="Enter the host of your connection" value="<%= event.host %>">
+            </div>
+            <div class="form-group">
+                <label for="Details">Details</label>
+                <textarea name="details" id="Details" required placeholder="Enter the details of your connection"><%= event.details %></textarea>
+            </div>
+            <!-- Add other form fields with correct name attributes -->
+            
+            
+            <div class="form-group">
+                <label for="location">Where</label> 
+                <input type="text" name="where" id="location" value="<%= event.where %>">   
+            </div>
+            <div class="form-group">
+                <label for="Start">Start</label> 
+                <input type="text" name="start" id="Start" required value="<%= event.start %>">  
+            </div>
+            <div class="form-group">
+                <label for="End">End</label> 
+                <input type="text" name="end" id="End" required value="<%= event.end %>">  
+            </div><div class="form-group">
+                <label for="date">Date</label> 
+                <input type="text" name="date" id="date" required value="<%= event.date %>">  
+            </div>
+            <div class="form-group">
+                <label for="cost">Cost</label> 
+                <input type="text" name="cost" id="cost" required placeholder="Enter the cost of your connection" value="<%= event.cost %>">  
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="image"> 
+            </div>
+            
+            <div class="button-container">
+                <button type="submit" value="submit">Update Changes</button>
+            </div>
+            
+        </div>
+    </form>
+    </main>
+
+    <div class="image-slider">
+        <!-- Your image slider content goes here -->
+        <img src="/imgs/imag_1.jpeg" alt="Image 1">
+        <img src="/imgs/imag_2.jpeg" alt="Image 2">
+        <img src="/imgs/imag_3.jpeg" alt="Image 3">
+        <img src="/imgs/imag_4.jpeg" alt="Image 4">
+        <img src="/imgs/events_images/event1.jpeg" alt="Image 5">
+        <img src="/imgs/events_images/event2.jpeg" alt="Image 6">
+        <img src="/imgs/events_images/event3.jpeg" alt="Image 7">
+        <img src="/imgs/events_images/event4.jpeg" alt="Image 8">    
+    </div>
+</div>
+
+<script src="/javascript/scripts.js"></script>
+<%- include('../partials/footer.ejs') %>

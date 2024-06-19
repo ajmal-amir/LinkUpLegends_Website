@@ -1,0 +1,82 @@
+<%- include('../partials/header.ejs') %>
+<div class="details-page-container"> <!-- Start of the container -->
+    <div class="event-item details-imag">
+        <h1>Title: <%= event.title %></h1>
+          <% if (!user || (event.host && user._id !== event.host._id)) { %>
+            <form>
+                <div class="event-detials-icons">
+                <button type="submit">Going? </button>
+                <button type="submit" formmethod="POST" formaction="/events/<%= event._id %>/rsvp" name="status" value="YES" class="btn yes">Yes</button>
+                <button type="submit" formaction="/events/<%= event._id %>/rsvp?_method=PUT" formmethod="POST" name="status" value="NO" class="btn no">No</button>
+                <button type="submit" formaction="/events/<%= event._id %>/rsvp?_method=PUT" formmethod="POST" name="status" value="MAYBE" class="btn maybe">Maybe</button>
+            </form>                
+        </div>
+        <% } %>
+        <div class = "Erro-content">
+            <% if (errorMessages.length > 0) { %>
+                <% errorMessages.forEach(message => { %>
+                    <div class="error"><%= message %></div>
+                <% }) %>
+            <% } %>
+            
+            <% if (successMessages.length > 0) { %>
+                <% successMessages.forEach(message => { %>
+                    <div class="success"><%= message %></div>
+                <% }) %>
+            <% } %>
+        </div> 
+        <!-- Define base URL -->
+        <% const baseUrl = '/'; %>
+        <!-- Use absolute path for image src -->
+        <img src="<%= baseUrl + event.image %>" alt="an event image">
+        
+    </div>
+    <div class="event-item location map" id="map-container"> 
+        <h1>Location</h1>
+        <!-- Embed the map in this container -->
+    </div>
+    <div class="event-item content-container">
+        <div class="time-data">
+            <p>When: <%= event.start.toLocaleString() %> - <%= event.end.toLocaleString() %></p>
+        </div>
+        <div class="time-data">
+            <hr class="hr">
+            <p>Date: <%= event.date %></p>
+            <hr class="hr">
+            <h4>Host: <%= event.host.firstName + " " +  event.host.lastName %></h4>
+            <hr class="hr">
+            <% console.log('RSVPs:', event.rsvps); %>
+        <h4>Number of RSVPS: <%= event.rsvps ? event.rsvps.length : 0 %></h4>
+
+
+            <hr class="hr">
+        </div>
+        <div class="event-details">
+            <p><%= event.details %></p>
+        </div>
+    </div>
+</div> <!-- End of the container -->
+
+<script>
+    /* Google Map location*/
+    // Replace YOUR_API_KEY with your actual API key
+    const apiKey = 'AIzaSyAejLCIJkUU1-DZM5Qc0DgOSm2LtGKwUkk';
+
+    // Replace the address with the actual address of your event
+    const eventAddress = '<%= event.where %>'; // Use the event's location
+
+    // Create the embedded map URL
+    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(eventAddress)}`;
+
+    const mapContainer = document.getElementById('map-container');
+    const iframe = document.createElement('iframe');
+    iframe.src = mapUrl;
+    iframe.width = '100%';
+    iframe.height = '300';
+    iframe.frameborder = '0';
+    iframe.style.border = '0';
+    iframe.allowfullscreen = '';
+    mapContainer.appendChild(iframe);
+</script>
+
+<%- include('../partials/footer.ejs') %>

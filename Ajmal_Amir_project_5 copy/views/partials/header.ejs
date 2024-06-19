@@ -1,0 +1,59 @@
+<!--header.ejs-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>LinkUpLegends</title>
+</head>
+<body>
+    <nav class="nav_bar">
+        <div class="nav_div">
+            <div class="logo"><a href="/"> <!-- Update the href attribute here --> <img src="/imgs/logo3.png" alt=""></a></div>
+            <ul>
+                
+                <li class="new-event-conection"><a href="/events/newconnection">Start a New Connection</a></li> <!-- Update the href attribute here -->
+                <% if (!user) { %>
+                    <button class="sign_in"><a href="/user/login">Log In</a></button>
+                    <button class="sign_up"><a href="/user/signUp">Sign Up</a></button>
+                    <div class="user">
+                <% } else { %>
+                    <br>
+                    <li><span class="user-name"><%= user.firstName + "'s " %>profile</span></li>
+                <% } %>
+            </div>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="second_navbar">
+        <div class="second_navdiv">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/events">Events</a></li>
+                <% if (user) { %>
+                    <li><a href='/user/profile'>Profile</a></li>
+                    <li><a href='/user/logout'>Logout</a></li>
+                    <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Your content goes here -->
+    <!-- <div class = "Erro-content">
+        <% if (errorMessages.length > 0) { %>
+            <% errorMessages.forEach(message => { %>
+                <div class="error"><%= message %></div>
+            <% }) %>
+        <% } %>
+        
+        <% if (successMessages.length > 0) { %>
+            <% successMessages.forEach(message => { %>
+                <div class="success"><%= message %></div>
+            <% }) %>
+        <% } %>
+    </div> -->
+</body>
+</html>

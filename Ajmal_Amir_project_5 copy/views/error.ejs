@@ -1,0 +1,8 @@
+<!-- views/error404.ejs -->
+<%- include('./partials/header.ejs') %>
+    <div class="errorcontent">
+        <h3 style="text-align: center;"><%= error.status %></h3>
+        <p style="text-align: center;"><%= error.message %></p>
+    </div>
+<%- include('./partials/footer.ejs') %>
+
